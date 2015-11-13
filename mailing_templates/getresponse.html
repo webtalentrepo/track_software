@@ -1,0 +1,7 @@
+<iframe name="iframe_{list_id}" style="width: 90%; height: 300px; display: none;" onload="loadFrame(this)"></iframe>
+<form name="form_{list_id}" accept-charset="utf-8" action="{url}" method="post" target="iframe_{list_id}" style="display:none">
+	<input type="hidden" name="webform_id" value="{list_id}" />
+	<input type="text" name="name" id="name1" value="member">
+	<input type="text" name="email" id="from1" value="{email}">
+	<input type="submit" name="submit" value="Sign Up!" />
+</form>

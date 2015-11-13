@@ -1,0 +1,48 @@
+<iframe name="iframe_{list_id}" style="width: 90%; height: 300px; display: none;" onload="loadFrame(this)"></iframe>
+<form method="post" class="af-form-wrapper" action="http://www.aweber.com/scripts/addlead.pl" name="form_{list_id}" target="iframe_{list_id}" style="display:none">
+<div style="display: none;">
+<input type="hidden" name="meta_web_form_id" value="{list_id}" />
+<input type="hidden" name="meta_split_id" value="" />
+<input type="hidden" name="listname" value="{url}" />
+<input type="hidden" name="meta_adtracking" value="{title}" />
+<input type="hidden" name="meta_message" value="1" />
+<input type="hidden" name="meta_required" value="email" />
+
+<input type="hidden" name="meta_tooltip" value="" />
+</div>
+<div id="af-form-{list_id}" class="af-form"><div id="af-header-{list_id}"
+class="af-header"><div class="bodyText"><p> </p></div></div>
+<div id="af-body-{list_id}" class="af-body af-standards">
+<div class="af-element">
+<label class="previewLabel" for="awf_field-62854164">Email: </label>
+<div class="af-textWrap"><input class="text" id="awf_field-62854164"
+type="text" name="email" value="{email}" tabindex="500" />
+</div><div class="af-clear"></div>
+</div>
+<div class="af-element buttonContainer">
+<input name="submit" id="af-submit-image-{list_id}" type="image"
+class="image" style="background: none; max-width: 100%;" alt="Submit Form"
+src="http://forms.aweber.com/images/forms/modern/blue/button.png"
+tabindex="501" />
+<div class="af-clear"></div>
+</div>
+<div class="af-element privacyPolicy" style="text-align: center"><p>We
+respect your <a title="Privacy Policy"
+href="http://www.aweber.com/permission.htm" target="_blank">email
+privacy</a></p>
+<div class="af-clear"></div>
+</div>
+<div class="af-element poweredBy" style="text-align: center; font-size:
+9px;"><p><a href="http://www.aweber.com" title="Email Marketing">Email
+Marketing</a> by AWeber</p>
+<div class="af-clear"></div>
+</div>
+</div>
+<div id="af-footer-{list_id}" class="af-footer"><div class="bodyText"><p>
+</p></div></div>
+</div>
+<div style="display: none;"><img
+src="http://forms.aweber.com/form/displays.htm?id=jAzszAxsbOyMrA==" alt=""
+/></div>
+<input type="submit" name="submit" value=" " />
+</form>

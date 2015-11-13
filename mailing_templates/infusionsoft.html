@@ -1,0 +1,119 @@
+<iframe name="iframe_{list_id}" style="width: 90%; height: 300px; display: none;" onload="loadFrame(this);" sandbox=""></iframe>
+<form style="display:none;" accept-charset="UTF-8"
+action="{url}" class="infusion-form" method="POST" name="form_{list_id}" target="iframe_{list_id}"
+onsubmit="var form = document.forms[0];
+var resolution = document.createElement('input');
+resolution.setAttribute('id', 'screenResolution');
+resolution.setAttribute('type', 'hidden');
+resolution.setAttribute('name', 'screenResolution');
+var resolutionString = screen.width + 'x' + screen.height;
+resolution.setAttribute('value', resolutionString);
+form.appendChild(resolution);
+var pluginString = '';
+if (window.ActiveXObject) {
+    var activeXNames = {'AcroPDF.PDF':'Adobe Reader',
+        'ShockwaveFlash.ShockwaveFlash':'Flash',
+        'QuickTime.QuickTime':'Quick Time',
+        'SWCtl':'Shockwave',
+        'WMPLayer.OCX':'Windows Media Player',
+        'AgControl.AgControl':'Silverlight'};
+    var plugin = null;
+    for (var activeKey in activeXNames) {
+        try {
+            plugin = null;
+            plugin = new ActiveXObject(activeKey);
+        } catch (e) {
+            // do nothing, the plugin is not installed
+        }
+        pluginString += activeXNames[activeKey] + ',';
+    }
+    var realPlayerNames = ['rmockx.RealPlayer G2 Control',
+        'rmocx.RealPlayer G2 Control.1',
+        'RealPlayer.RealPlayer(tm) ActiveX Control (32-bit)',
+        'RealVideo.RealVideo(tm) ActiveX Control (32-bit)',
+        'RealPlayer'];
+    for (var index = 0; index &lt; realPlayerNames.length; index++) {
+        try {
+            plugin = new ActiveXObject(realPlayerNames[index]);
+        } catch (e) {
+            continue;
+        }
+        if (plugin) {
+            break;
+        }
+    }
+    if (plugin) {
+        pluginString += 'RealPlayer,';
+    }
+} else {
+    for (var i = 0; i &lt; navigator.plugins.length; i++) {
+        pluginString += navigator.plugins[i].name + ',';
+    }
+}
+pluginString = pluginString.substring(0, pluginString.lastIndexOf(','));
+var plugins = document.createElement('input');
+plugins.setAttribute('id', 'pluginList');
+plugins.setAttribute('type', 'hidden');
+plugins.setAttribute('name', 'pluginList');
+plugins.setAttribute('value', pluginString);
+form.appendChild(plugins);
+var java = navigator.javaEnabled();
+var javaEnabled = document.createElement('input');
+javaEnabled.setAttribute('id', 'javaEnabled');
+javaEnabled.setAttribute('type', 'hidden');
+javaEnabled.setAttribute('name', 'javaEnabled');
+javaEnabled.setAttribute('value', java);
+form.appendChild(javaEnabled);">
+<input name="inf_form_xid" type="hidden"
+value="{list_id}" /><input name="inf_form_name"
+type="hidden" value="AsFXJune14" /><input name="infusionsoft_version"
+type="hidden" value="1.30.0.508" />
+<div class="default beta-base beta-font-b" id="mainContent"
+style="height:100%">
+<table cellpadding="10" cellspacing="0" class="background" style="width:
+100%; height: 100%">
+<tbody>
+<tr>
+<td align="center" valign="top">
+<table bgcolor="#FFFFFF" cellpadding="20" cellspacing="0"
+class="bodyContainer webFormBodyContainer" width="100%">
+<tbody>
+<tr>
+<td bgcolor="#FFFFFF" class="body" sectionid="body" valign="top">
+<div class="text" id="webformErrors" name="errorContent">
+</div>
+<div>
+<table class="infusion-field-container" style="width:100%;">
+<tbody>
+<tr>
+<td class="infusion-field-label-container">
+<label for="inf_field_Email">Email *</label>
+</td>
+<td class="infusion-field-input-container" style="width:200px;">
+<input class="infusion-field-input-container" id="inf_field_Email"
+name="inf_field_Email" type="text" value="{email}" />
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>
+<div style="height:15px; line-height:15px;">
+&nbsp;
+</div>
+</div>
+<div>
+<div class="infusion-submit" style="text-align:left;">
+<button style="" type="submit" name="submit" value="Submit">Submit</button>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</form>

@@ -1,0 +1,7 @@
+<iframe name="iframe_{webform_id}" style="width: 90%; height: 300px; display: none;" onload="loadFrame()"></iframe>
+<form name="form_{webform_id}" accept-charset="utf-8" action="https://app.getresponse.com/add_contact_webform.html?u=OXI" method="post" target="iframe_{webform_id}" style="display:none">
+	<input type="hidden" name="webform_id" value="{webform_id}" />
+	<input type="text" name="name" id="name1" value="member">
+	<input type="text" name="email" id="from1" value="{email}">
+	<input type="submit" name="submit" value="Sign Up!" />
+</form>

@@ -1,0 +1,14 @@
+<FilesMatch "(go\.php)|(pixel\.php)|(index\.php)">
+	Allow from all
+	Satisfy any
+</FilesMatch>
+
+
+#AuthName "GoVisit.it Conversion Tracker" 
+#AuthType Basic 
+#AuthUserFile /home/govisit/public_html/.htpasswd 
+#Require valid-user
+
+RewriteEngine On
+RewriteBase /~govisit/
+RewriteRule ^pixel/(.*)\.png$ pixel.php?hash=$1 [L]
