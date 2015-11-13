@@ -50,16 +50,24 @@ class Mailing {
 			$type = 'aweber';
 		}
 		if ($type == 'getresponse') {
-			$dataary = explode("&webforms_id", $data['formcode']);
+			$dataary = explode("&webforms_id=", $data['formcode']);
 			$list_id = $dataary[1];
-			$cont = $this->httpGet($data['formcode']);
+			$cont = file_get_contents($data['formcode']);
 			$document = new DOMDocument();
 			@$document->loadHTML($cont);
 			$dform = $document->getElementsByTagName('form')->item(0);
-			$action = $dform->getAtrribute('action');
-			$uary = explode("&webforms_id", $action);
-			$url = $uary[0];
+			$uary = explode('?', $dataary[0]);
+			if ($dform) {
+				$action = $dform->getAtrribute('action');
+				$url = 'https://app.getresponse.com/' . $action . '?' . $uary[1];
+			} else {
+				$url = 'https://app.getresponse.com/add_contact_webform.html?' . $uary[1];
+			}
 		}
+//		var_dump($url);
+//		var_dump($list_id);
+//		var_dump($type);
+//		exit;
 		return $q->execute(Array(
 			$list_id,
 			$data['title'],
