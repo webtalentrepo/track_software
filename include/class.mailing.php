@@ -50,18 +50,29 @@ class Mailing {
 			$type = 'aweber';
 		}
 		if ($type == 'getresponse') {
-			$dataary = explode("&webforms_id=", $data['formcode']);
-			$list_id = $dataary[1];
-			$cont = file_get_contents($data['formcode']);
-			$document = new DOMDocument();
-			@$document->loadHTML($cont);
-			$dform = $document->getElementsByTagName('form')->item(0);
-			$uary = explode('?', $dataary[0]);
-			if ($dform) {
-				$action = $dform->getAtrribute('action');
-				$url = 'https://app.getresponse.com/' . $action . '?' . $uary[1];
+			$pos3 = strpos(strtolower($data['formcode']), 'script');
+			if ($pos3 === false) {
+				$dataary = explode("&webforms_id=", $data['formcode']);
+				$list_id = $dataary[1];
+				$cont = file_get_contents($data['formcode']);
+				$document = new DOMDocument();
+				@$document->loadHTML($cont);
+				$dform = $document->getElementsByTagName('form')->item(0);
+				$uary = explode('?', $dataary[0]);
+				if ($dform) {
+					$action = $dform->getAtrribute('action');
+					$url = 'https://app.getresponse.com/' . $action . '?' . $uary[1];
+				} else {
+					$url = 'https://app.getresponse.com/add_contact_webform.html?' . $uary[1];
+				}
 			} else {
-				$url = 'https://app.getresponse.com/add_contact_webform.html?' . $uary[1];
+				$pattern = '<script[\r\s\n]type="text/javascript"[\r\s\n]src="(.+?)">';
+				if (preg_match_all($pattern, $data['formcode'], $fmatchs)){
+					$dataary = explode("&webforms_id=", $fmatchs[1][0]);
+					$list_id = $dataary[1];
+					$uary = explode('?', $dataary[0]);
+					$url = 'https://app.getresponse.com/add_contact_webform.html?' . $uary[1];
+				}
 			}
 		}
 //		var_dump($url);
